@@ -1,0 +1,194 @@
+[gd_scene load_steps=27 format=3 uid="uid://o5paglimaq1a"]
+
+[ext_resource type="Texture2D" uid="uid://dlkdtyhfntgre" path="res://Character1.png" id="1_0oj2l"]
+[ext_resource type="Script" path="res://Player.cs" id="1_7hd0l"]
+[ext_resource type="Texture2D" uid="uid://daurxq7p6voj3" path="res://Down1.png" id="2_hal73"]
+[ext_resource type="Texture2D" uid="uid://cs3l3sihluhh" path="res://Down2.png" id="3_xqaik"]
+[ext_resource type="Texture2D" uid="uid://b85kcjdqigsbm" path="res://Down3.png" id="4_pfb37"]
+[ext_resource type="Texture2D" uid="uid://ifclmkffyikg" path="res://walk1.png" id="4_s0a2d"]
+[ext_resource type="Texture2D" uid="uid://cffido6xvrlal" path="res://walk2.png" id="5_lw7ma"]
+[ext_resource type="Texture2D" uid="uid://csc25hpq7pyac" path="res://Down4.png" id="5_w25yu"]
+[ext_resource type="Texture2D" uid="uid://bl31t0x6wl0if" path="res://Down5.png" id="6_chdjv"]
+[ext_resource type="Texture2D" uid="uid://cqyentl75um2e" path="res://walk3.png" id="6_cp6b2"]
+[ext_resource type="Texture2D" uid="uid://btgflkhx5nw5a" path="res://Down6.png" id="7_ednyr"]
+[ext_resource type="Texture2D" uid="uid://cd0lw06prpmr" path="res://walk4.png" id="7_fsdrg"]
+[ext_resource type="Texture2D" uid="uid://b1ux3yetn17vr" path="res://walk5.png" id="8_wrejs"]
+[ext_resource type="Texture2D" uid="uid://bvxd7745ou0e8" path="res://Up1.png" id="9_bnute"]
+[ext_resource type="Texture2D" uid="uid://co16ikjylob2t" path="res://walk6.png" id="9_p4t7t"]
+[ext_resource type="Texture2D" uid="uid://dq8g12c7y21kk" path="res://Up2.png" id="10_bi8c4"]
+[ext_resource type="Texture2D" uid="uid://q0a1n64p7bp8" path="res://Up3.png" id="11_46rxp"]
+[ext_resource type="Texture2D" uid="uid://vc4dtip15ugh" path="res://Up4.png" id="12_1wkl7"]
+[ext_resource type="Texture2D" uid="uid://4tybsh4lh1d0" path="res://Up5.png" id="13_t74rl"]
+[ext_resource type="Texture2D" uid="uid://b3s6t5fph3diu" path="res://Up6.png" id="14_hevt6"]
+[ext_resource type="Texture2D" uid="uid://dqjsffrx37pqa" path="res://IRON_SWORD.png" id="30_pf7w4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aws3t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hal73")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xqaik")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pfb37")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_w25yu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_chdjv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ednyr")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0oj2l")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_bnute")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_bi8c4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_46rxp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_1wkl7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_t74rl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_hevt6")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_s0a2d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_lw7ma")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_cp6b2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_fsdrg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_wrejs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_p4t7t")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2k6gm"]
+size = Vector2(32, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r1rvw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("30_pf7w4")
+}],
+"loop": true,
+"name": &"items",
+"speed": 5.0
+}]
+
+[sub_resource type="CSharpScript" id="CSharpScript_c10oc"]
+script/source = "using Godot;
+using System;
+
+public partial class ItemHandScript : AnimatedSprite2D
+{
+	public override void _Process(double delta){
+		var velocity = Vector2.Zero;
+		
+		void _player_left()
+		{
+			// Replace with function body.
+			velocity.X = -500;
+			Position += velocity* (float)delta;
+			GD.Print(\"yay\");
+			
+		}
+
+
+		void _player_right()
+		{
+			// Replace with function body.
+			velocity.X = 0;
+			Position += velocity* (float)delta;
+			GD.Print(\"yay\");
+		}
+	}
+	
+	
+}
+
+
+
+
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mvaan"]
+size = Vector2(41, 68)
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(464, 250)
+collision_layer = 3
+script = ExtResource("1_7hd0l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_aws3t")
+animation = &"idle"
+offset = Vector2(0, -30)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -7.5)
+shape = SubResource("RectangleShape2D_2k6gm")
+
+[node name="Item In Hand" type="AnimatedSprite2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(30, -49)
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_r1rvw")
+animation = &"items"
+script = SubResource("CSharpScript_c10oc")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -29)
+shape = SubResource("RectangleShape2D_mvaan")
+
+[node name="damagecooldown" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_hazard_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_hazard_exited"]
+[connection signal="timeout" from="damagecooldown" to="." method="_on_damagecooldown_timeout"]
