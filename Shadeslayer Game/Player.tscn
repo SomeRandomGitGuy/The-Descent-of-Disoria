@@ -1,8 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://o5paglimaq1a"]
+[gd_scene load_steps=28 format=3 uid="uid://o5paglimaq1a"]
 
 [ext_resource type="Texture2D" uid="uid://dlkdtyhfntgre" path="res://Character1.png" id="1_0oj2l"]
 [ext_resource type="Script" path="res://Player.cs" id="1_7hd0l"]
 [ext_resource type="Texture2D" uid="uid://daurxq7p6voj3" path="res://Down1.png" id="2_hal73"]
+[ext_resource type="Texture2D" uid="uid://c5kah5jrxca03" path="res://Bush.png" id="2_t2s62"]
 [ext_resource type="Texture2D" uid="uid://cs3l3sihluhh" path="res://Down2.png" id="3_xqaik"]
 [ext_resource type="Texture2D" uid="uid://b85kcjdqigsbm" path="res://Down3.png" id="4_pfb37"]
 [ext_resource type="Texture2D" uid="uid://ifclmkffyikg" path="res://walk1.png" id="4_s0a2d"]
@@ -24,6 +25,14 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_aws3t"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_t2s62")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_hal73")
@@ -165,7 +174,7 @@ z_as_relative = false
 y_sort_enabled = true
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_aws3t")
-animation = &"idle"
+animation = &"attack"
 offset = Vector2(0, -30)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -188,7 +197,11 @@ position = Vector2(0, -29)
 shape = SubResource("RectangleShape2D_mvaan")
 
 [node name="damagecooldown" type="Timer" parent="."]
+wait_time = 0.75
+
+[node name="attackcooldown" type="Timer" parent="."]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_hazard_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_hazard_exited"]
 [connection signal="timeout" from="damagecooldown" to="." method="_on_damagecooldown_timeout"]
+[connection signal="timeout" from="attackcooldown" to="." method="_on_attackcooldown_timeout"]

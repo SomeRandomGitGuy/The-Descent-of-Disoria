@@ -1,18 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://cay2tk8ox05q3"]
+[gd_scene load_steps=7 format=3 uid="uid://cay2tk8ox05q3"]
 
 [ext_resource type="Script" path="res://Enemy.cs" id="1_gbky2"]
 [ext_resource type="Texture2D" uid="uid://d03wqtkmpo1f5" path="res://icon.svg" id="1_okym1"]
-[ext_resource type="Texture2D" uid="uid://c5kah5jrxca03" path="res://Bush.png" id="3_eecxc"]
-[ext_resource type="Texture2D" uid="uid://bvb7ux2hbqo5g" path="res://BIGTree.png" id="4_13bjc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kngdi"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_okym1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_eecxc")
 }],
 "loop": true,
 "name": &"idle",
@@ -21,9 +16,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_okym1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_13bjc")
 }],
 "loop": true,
 "name": &"walk",
@@ -37,8 +29,8 @@ radius = 279.145
 radius = 24.0208
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_spdj6"]
-radius = 102.0
-height = 204.0
+radius = 37.0
+height = 74.0
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_gbky2")
@@ -66,8 +58,12 @@ shape = SubResource("CircleShape2D_6yhrs")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2(0, -10)
 shape = SubResource("CapsuleShape2D_spdj6")
+debug_color = Color(0.941176, 0, 0.615686, 0.419608)
+
+[node name="takedamage" type="Timer" parent="."]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
 [connection signal="body_exited" from="Area2D2" to="." method="_on_area_2d_2_body_exited"]
+[connection signal="timeout" from="takedamage" to="." method="_on_takedamage_timeout"]

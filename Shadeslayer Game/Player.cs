@@ -13,6 +13,8 @@ public partial class Player : CharacterBody2D
 	int player_health = 100;
 	bool player_alive = true;
 	bool attack_ip = false;
+
+	Vector2 inputDirection = new Vector2(0,0);
 	
 	
 	private void _on_area_2d_hazard_entered(Node body)
@@ -36,6 +38,14 @@ public partial class Player : CharacterBody2D
 	{
 		enemy_attack_cooldown = true;
 	}
+
+	private void _on_attackcooldown_timeout()
+	{
+		GetNode<Timer>("attackcooldown").Stop();
+		var playerVariables = GetNode<MainVariables>("/root/MainVariables");
+		playerVariables.player_current_attack = false;
+		attack_ip = false;
+	}
 	
 	private void enemy_attack()
 	{
@@ -43,10 +53,25 @@ public partial class Player : CharacterBody2D
 		{
 			if (enemy_attack_cooldown == true)
 			{
-				player_health -= 20;
+				player_health -= 5;
+				GD.Print(player_health);
 				enemy_attack_cooldown = false;
 				GetNode<Timer>("damagecooldown").Start();
 			}
+		}
+		
+	}
+
+	private void attack()
+	{
+		if (Input.IsActionJustPressed("attack"))
+		{
+			var playerVariables = GetNode<MainVariables>("/root/MainVariables");
+			playerVariables.player_current_attack = true;
+			attack_ip = true;
+			var animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+			animatedSprite2D.Play("attack");
+			GetNode<Timer>("attackcooldown").Start();
 		}
 		
 	}
@@ -69,7 +94,7 @@ public partial class Player : CharacterBody2D
 	
 	public void GetInput()
 	{
-		Vector2 inputDirection = Input.GetVector("left", "right", "up", "down");
+		inputDirection = Input.GetVector("left", "right", "up", "down");
 		Velocity = inputDirection * player_movement_speed;
 	}
 	
@@ -78,6 +103,7 @@ public partial class Player : CharacterBody2D
 		GetInput();
 		MoveAndCollide(Velocity * (float)delta);
 		enemy_attack();
+		attack();
 		if (player_health <= 0)
 		{
 			player_alive = false;
@@ -116,11 +142,16 @@ public partial class Player : CharacterBody2D
 		}
 		else
 		{
-			animatedSprite2D.Animation = "idle";
-			animatedSprite2D.FlipH = false;
-			Item.Position = new Vector2(30, -45);
-			Item.FlipH = false;
+			if (attack_ip == false)
+			{
+				animatedSprite2D.Animation = "idle";
+				animatedSprite2D.FlipH = false;
+				Item.Position = new Vector2(30, -45);
+				Item.FlipH = false;
+			}
 		}
+
+		
 		
 		if (Velocity.Length() > 0)
 		{

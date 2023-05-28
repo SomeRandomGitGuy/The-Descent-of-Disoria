@@ -4,12 +4,13 @@ using System;
 public partial class Enemy : CharacterBody2D
 {
 	
-	int speed = 20;
+	int speed = 50;
 	bool player_chase = false;
 	public Node2D player = null;
 	
 	int enemy_health = 50;
 	bool player_in_zone = false;
+	bool can_take_damage = true;
 
 
 	
@@ -52,13 +53,25 @@ public partial class Enemy : CharacterBody2D
 			var playerVariables = GetNode<MainVariables>("/root/MainVariables");
 			if (playerVariables.player_current_attack == true)
 			{
-				enemy_health -= 10;
-				if (enemy_health <= 0)
+				if (can_take_damage == true)
 				{
-					Free();
+					enemy_health -= 15;
+					GD.Print("enemy:", enemy_health);
+					GetNode<Timer>("takedamage").Start();
+					can_take_damage = false;
+					if (enemy_health < 1)
+					{
+						Free();
+					}
 				}
 			}
 		}
+	}
+
+	private void _on_takedamage_timeout()
+	{
+		GetNode<Timer>("takedamage").Stop();
+		can_take_damage = true;
 	}
 	
 	
