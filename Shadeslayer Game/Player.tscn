@@ -201,7 +201,21 @@ wait_time = 0.75
 
 [node name="attackcooldown" type="Timer" parent="."]
 
+[node name="health" type="ProgressBar" parent="."]
+modulate = Color(0.06, 100, 0.05, 1)
+offset_left = -29.0
+offset_top = 7.0
+offset_right = 164.0
+offset_bottom = 34.0
+scale = Vector2(0.3, 0.3)
+show_percentage = false
+
+[node name="regen" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_hazard_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_hazard_exited"]
 [connection signal="timeout" from="damagecooldown" to="." method="_on_damagecooldown_timeout"]
 [connection signal="timeout" from="attackcooldown" to="." method="_on_attackcooldown_timeout"]
+[connection signal="timeout" from="regen" to="." method="_on_regen_timeout"]

@@ -46,6 +46,39 @@ public partial class Player : CharacterBody2D
 		playerVariables.player_current_attack = false;
 		attack_ip = false;
 	}
+
+	private void _on_regen_timeout()
+	{
+		if (player_health < 100)
+		{
+			if (player_health > 90)
+			{
+				player_health = 100;
+			}
+			else if (player_health > 0){
+				player_health += 10;
+			}
+			else
+			{
+				player_health = 0;
+			}
+		}
+	}
+
+	private void update_health()
+	{
+		var healthbar = GetNode<ProgressBar>("health");
+		healthbar.Value = player_health;
+
+		if (player_health >= 100)
+		{
+			healthbar.Visible = false;
+		}
+		else
+		{
+			healthbar.Visible = true;
+		}
+	}
 	
 	private void enemy_attack()
 	{
@@ -53,7 +86,7 @@ public partial class Player : CharacterBody2D
 		{
 			if (enemy_attack_cooldown == true)
 			{
-				player_health -= 5;
+				player_health -= 15;
 				GD.Print(player_health);
 				enemy_attack_cooldown = false;
 				GetNode<Timer>("damagecooldown").Start();
@@ -104,6 +137,7 @@ public partial class Player : CharacterBody2D
 		MoveAndCollide(Velocity * (float)delta);
 		enemy_attack();
 		attack();
+		update_health();
 		if (player_health <= 0)
 		{
 			player_alive = false;
