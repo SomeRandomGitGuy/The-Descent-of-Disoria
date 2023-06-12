@@ -8,7 +8,7 @@ public partial class Enemy : CharacterBody2D
 	bool player_chase = false;
 	public Node2D player = null;
 	
-	int enemy_health = 50;
+	int enemy_health = 30;
 	bool player_in_zone = false;
 	bool can_take_damage = true;
 
@@ -45,6 +45,29 @@ public partial class Enemy : CharacterBody2D
 			player_in_zone = false;
 		}
 	}
+
+
+
+	private void update_enhealth()
+	{
+		var healthbar = GetNode<ProgressBar>("enhealth");
+		healthbar.Value = enemy_health;
+
+		if (enemy_health >= 30)
+		{
+			healthbar.Visible = false;
+		}
+		else
+		{
+			healthbar.Visible = true;
+		}
+	}
+
+
+
+
+
+
 	
 	private void take_damage()
 	{
@@ -82,6 +105,7 @@ public partial class Enemy : CharacterBody2D
 	{	
 		var enemyanimation = GetNode<AnimatedSprite2D>("EnemyAnimation");
 		take_damage();
+		update_enhealth();
 		if (player_chase == true)
 		{
 			MoveAndCollide((player.Position - Position)/speed);

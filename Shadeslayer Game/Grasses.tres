@@ -1,10 +1,11 @@
-[gd_resource type="TileSet" load_steps=12 format=3 uid="uid://bpcgws3d81xo5"]
+[gd_resource type="TileSet" load_steps=14 format=3 uid="uid://bpcgws3d81xo5"]
 
 [ext_resource type="Texture2D" uid="uid://c27c7eff7cfo7" path="res://Grass Tile.png" id="1_7rteg"]
 [ext_resource type="Texture2D" uid="uid://dtvjybnrnhkix" path="res://Grass Tile2.png" id="2_fcnqx"]
 [ext_resource type="Texture2D" uid="uid://bvb7ux2hbqo5g" path="res://BIGTree.png" id="3_dmcwx"]
 [ext_resource type="Texture2D" uid="uid://c5kah5jrxca03" path="res://Bush.png" id="4_at7u8"]
 [ext_resource type="PackedScene" uid="uid://ddcjckrrbj8ok" path="res://big_tree.tscn" id="5_2vhvd"]
+[ext_resource type="PackedScene" uid="uid://cay2tk8ox05q3" path="res://Enemy.tscn" id="5_b0luo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mkvyj"]
 texture = ExtResource("1_7rteg")
@@ -81,6 +82,10 @@ texture_region_size = Vector2i(32, 32)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-13.5, 0.5, 12.5, 1, 12.5, 6.5, -13.5, 5.5)
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_awxo8"]
+resource_name = "enemys"
+scenes/2/scene = ExtResource("5_b0luo")
+
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_3tli1"]
 scenes/1/scene = ExtResource("5_2vhvd")
 
@@ -102,3 +107,4 @@ sources/2 = SubResource("TileSetAtlasSource_elq5i")
 sources/3 = SubResource("TileSetAtlasSource_i3vcl")
 sources/5 = SubResource("TileSetScenesCollectionSource_3tli1")
 sources/7 = SubResource("TileSetAtlasSource_vnw5i")
+sources/4 = SubResource("TileSetScenesCollectionSource_awxo8")
