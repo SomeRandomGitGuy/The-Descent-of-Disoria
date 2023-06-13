@@ -19,7 +19,7 @@ public partial class Player : CharacterBody2D
 	
 	private void _on_area_2d_hazard_entered(Node body)
 	{
-		if (body.GetType() == typeof(Enemy))
+		if (body.GetType() == typeof(Mush))
 		{
 			hazard_in_range = true;
 		}
@@ -28,7 +28,7 @@ public partial class Player : CharacterBody2D
 
 	private void _on_area_2d_hazard_exited(Node body)
 	{
-		if (body.GetType() == typeof(Enemy))
+		if (body.GetType() == typeof(Mush))
 		{
 			hazard_in_range = false;
 		}
@@ -86,7 +86,7 @@ public partial class Player : CharacterBody2D
 		{
 			if (enemy_attack_cooldown == true)
 			{
-				player_health -= 15;
+				player_health -= 2;
 				GD.Print(player_health);
 				enemy_attack_cooldown = false;
 				GetNode<Timer>("damagecooldown").Start();

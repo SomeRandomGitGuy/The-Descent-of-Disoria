@@ -1,16 +1,18 @@
 using Godot;
 using System;
 
-public partial class Enemy : CharacterBody2D
+public partial class Mush : CharacterBody2D
 {
 	
-	int speed = 50;
+	int speed = 40;
 	bool player_chase = false;
 	public Node2D player = null;
 	
 	int enemy_health = 30;
 	bool player_in_zone = false;
 	bool can_take_damage = true;
+	bool awakening = false;
+	bool pauseani = false;
 
 
 	
@@ -18,6 +20,11 @@ public partial class Enemy : CharacterBody2D
 	{
 		player = body;
 		player_chase = true;
+		var enemyanimation = GetNode<AnimatedSprite2D>("EnemyAnimation");
+		awakening = true;
+		pauseani = true;
+		enemyanimation.Play("awoken");		
+
 		
 	}
 	
@@ -26,6 +33,18 @@ public partial class Enemy : CharacterBody2D
 	{
 		player_chase = false;
 		player = null;
+	}
+
+
+
+	private void _on_enemy_animation_animation_finished()
+	{
+		if (awakening == true)
+		{
+			pauseani = false;
+			awakening = false;
+		}
+
 	}
 	
 	private void _on_area_2d_2_body_entered(Node2D body)
@@ -108,15 +127,18 @@ public partial class Enemy : CharacterBody2D
 		update_enhealth();
 		if (player_chase == true)
 		{
-			MoveAndCollide((player.Position - Position)/speed);
-			enemyanimation.Play("walk");
-			if (player.Position.X - Position.X < 0)
+			if (pauseani == false)
 			{
-				enemyanimation.FlipH = true;
-			}
-			else
-			{
-				enemyanimation.FlipH = false;
+				MoveAndCollide((player.Position - Position)/speed);
+				enemyanimation.Play("walk");
+				if (player.Position.X - Position.X < 0)
+				{
+					enemyanimation.FlipH = true;
+				}
+				else
+				{
+					enemyanimation.FlipH = false;
+				}
 			}
 		}
 		else

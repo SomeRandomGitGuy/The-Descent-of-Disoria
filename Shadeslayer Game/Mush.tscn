@@ -1,11 +1,43 @@
-[gd_scene load_steps=40 format=3 uid="uid://cay2tk8ox05q3"]
+[gd_scene load_steps=48 format=3 uid="uid://bdcmhyqtt3w6c"]
 
-[ext_resource type="Script" path="res://Enemy.cs" id="1_gbky2"]
+[ext_resource type="Script" path="res://Mush.cs" id="1_u1k4a"]
 [ext_resource type="Texture2D" uid="uid://dxq1ovqk58pic" path="res://MushSheetyayayayaya.png" id="2_wvtm1"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kg605"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5lus"]
+atlas = ExtResource("2_wvtm1")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwss7"]
+atlas = ExtResource("2_wvtm1")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rj7e1"]
+atlas = ExtResource("2_wvtm1")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ag0u"]
+atlas = ExtResource("2_wvtm1")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hatp"]
+atlas = ExtResource("2_wvtm1")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0oqgj"]
+atlas = ExtResource("2_wvtm1")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myexh"]
+atlas = ExtResource("2_wvtm1")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxuar"]
 atlas = ExtResource("2_wvtm1")
 region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ul7r"]
+atlas = ExtResource("2_wvtm1")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t5jt1"]
 atlas = ExtResource("2_wvtm1")
@@ -139,9 +171,38 @@ region = Rect2(192, 576, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kg605")
+"texture": SubResource("AtlasTexture_v5lus")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwss7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rj7e1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ag0u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hatp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0oqgj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_myexh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxuar")
 }],
-"loop": true,
+"loop": false,
+"name": &"awoken",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ul7r")
+}],
+"loop": false,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -257,14 +318,13 @@ radius = 24.0208
 radius = 37.0
 height = 74.0
 
-[node name="Enemy" type="CharacterBody2D"]
-script = ExtResource("1_gbky2")
+[node name="Mush" type="CharacterBody2D"]
+script = ExtResource("1_u1k4a")
 
 [node name="EnemyAnimation" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.8, 1.8)
 sprite_frames = SubResource("SpriteFrames_kngdi")
-animation = &"walk"
-frame_progress = 0.7628
+animation = &"awoken"
 offset = Vector2(-1, -10)
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -298,6 +358,7 @@ scale = Vector2(0.3, 0.3)
 max_value = 30.0
 show_percentage = false
 
+[connection signal="animation_finished" from="EnemyAnimation" to="." method="_on_enemy_animation_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]

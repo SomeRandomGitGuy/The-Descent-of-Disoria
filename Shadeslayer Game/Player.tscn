@@ -196,7 +196,7 @@ position = Vector2(0, -29)
 shape = SubResource("RectangleShape2D_mvaan")
 
 [node name="damagecooldown" type="Timer" parent="."]
-wait_time = 0.75
+wait_time = 0.2
 
 [node name="attackcooldown" type="Timer" parent="."]
 
