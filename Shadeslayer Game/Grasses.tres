@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cg1hyu44h0jks" path="res://grass.png" id="1_xt172"]
 [ext_resource type="Texture2D" uid="uid://c5kah5jrxca03" path="res://Bush.png" id="4_at7u8"]
 [ext_resource type="PackedScene" uid="uid://ddcjckrrbj8ok" path="res://big_tree.tscn" id="5_2vhvd"]
-[ext_resource type="PackedScene" uid="uid://chksf34lpctw8" path="res://Mush.tscn" id="5_b0luo"]
-[ext_resource type="PackedScene" uid="uid://djptjopn3sgxy" path="res://DeathStatue.tscn" id="7_0ofov"]
+[ext_resource type="PackedScene" uid="uid://bbgsdt8bgqom0" path="res://Mush.tscn" id="5_b0luo"]
+[ext_resource type="PackedScene" uid="uid://ceavb0u6ntfxr" path="res://DeathStatue.tscn" id="7_0ofov"]
 [ext_resource type="Texture2D" uid="uid://dxq1ovqk58pic" path="res://MushSheetyayayayaya.png" id="7_71usp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mkvyj"]
@@ -38,7 +38,7 @@ texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-13.5, 0.5, 12.5, 1, 12.5, 6.5, -13.5, 5.5)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-13.5, 0.5, 12.5, 1, 13, 12.5, -11, 12.5)
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_awxo8"]
 resource_name = "enemys"

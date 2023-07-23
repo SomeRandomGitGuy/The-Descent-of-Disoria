@@ -17,9 +17,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-MainVariables="*res://scripts/MainVariables.cs"
+MainVariables="*res://MainVariables.cs"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-GlobalDialogue="*res://scripts/global_dialogue.cs"
+GlobalDialogue="*res://global_dialogue.cs"
+World="*res://world.cs"
 
 [dotnet]
 

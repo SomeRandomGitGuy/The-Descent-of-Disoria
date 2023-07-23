@@ -1,7 +1,7 @@
-[gd_scene load_steps=28 format=3 uid="uid://dkimqrdeb8gk1"]
+[gd_scene load_steps=27 format=3 uid="uid://c8wo86brtqdyd"]
 
 [ext_resource type="Texture2D" uid="uid://dlkdtyhfntgre" path="res://Character1.png" id="1_0oj2l"]
-[ext_resource type="Script" path="res://scripts/Player.cs" id="1_1ilbr"]
+[ext_resource type="Script" path="res://Player.cs" id="1_1ilbr"]
 [ext_resource type="Texture2D" uid="uid://daurxq7p6voj3" path="res://Down1.png" id="2_hal73"]
 [ext_resource type="Texture2D" uid="uid://cs3l3sihluhh" path="res://Down2.png" id="3_xqaik"]
 [ext_resource type="Texture2D" uid="uid://b85kcjdqigsbm" path="res://Down3.png" id="4_pfb37"]
@@ -124,42 +124,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CSharpScript" id="CSharpScript_c10oc"]
-script/source = "using Godot;
-using System;
-
-public partial class ItemHandScript : AnimatedSprite2D
-{
-	public override void _Process(double delta){
-		var velocity = Vector2.Zero;
-		
-		void _player_left()
-		{
-			// Replace with function body.
-			velocity.X = -500;
-			Position += velocity* (float)delta;
-			GD.Print(\"yay\");
-			
-		}
-
-
-		void _player_right()
-		{
-			// Replace with function body.
-			velocity.X = 0;
-			Position += velocity* (float)delta;
-			GD.Print(\"yay\");
-		}
-	}
-	
-	
-}
-
-
-
-
-"
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mvaan"]
 size = Vector2(41, 68)
 
@@ -176,7 +140,8 @@ z_as_relative = false
 y_sort_enabled = true
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_aws3t")
-animation = &"attack"
+animation = &"down"
+frame_progress = 0.203793
 offset = Vector2(0, -30)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -184,17 +149,17 @@ position = Vector2(2, -7.5)
 shape = SubResource("RectangleShape2D_2k6gm")
 
 [node name="Item In Hand" type="AnimatedSprite2D" parent="."]
+z_index = 2
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(30, -49)
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_r1rvw")
 animation = &"items"
-script = SubResource("CSharpScript_c10oc")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="vulnerable zone" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="vulnerable zone"]
 position = Vector2(0, -29)
 shape = SubResource("RectangleShape2D_mvaan")
 
@@ -222,8 +187,13 @@ autostart = true
 position = Vector2(2, -40)
 shape = SubResource("CircleShape2D_qc4i0")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_hazard_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_hazard_exited"]
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="world2" type="Camera2D" parent="."]
+enabled = false
+
+[connection signal="body_entered" from="vulnerable zone" to="." method="_on_area_2d_hazard_entered"]
+[connection signal="body_exited" from="vulnerable zone" to="." method="_on_area_2d_hazard_exited"]
 [connection signal="timeout" from="damagecooldown" to="." method="_on_damagecooldown_timeout"]
 [connection signal="timeout" from="attackcooldown" to="." method="_on_attackcooldown_timeout"]
 [connection signal="timeout" from="regen" to="." method="_on_regen_timeout"]

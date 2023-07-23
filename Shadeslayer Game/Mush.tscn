@@ -1,6 +1,6 @@
-[gd_scene load_steps=48 format=3 uid="uid://chksf34lpctw8"]
+[gd_scene load_steps=48 format=3 uid="uid://bbgsdt8bgqom0"]
 
-[ext_resource type="Script" path="res://scripts/Mush.cs" id="1_lx5r1"]
+[ext_resource type="Script" path="res://Mush.cs" id="1_agsns"]
 [ext_resource type="Texture2D" uid="uid://dxq1ovqk58pic" path="res://MushSheetyayayayaya.png" id="2_wvtm1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v5lus"]
@@ -319,7 +319,7 @@ radius = 37.0
 height = 74.0
 
 [node name="Mush" type="CharacterBody2D"]
-script = ExtResource("1_lx5r1")
+script = ExtResource("1_agsns")
 
 [node name="EnemyAnimation" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.8, 1.8)

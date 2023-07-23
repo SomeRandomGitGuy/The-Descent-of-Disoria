@@ -38,18 +38,20 @@ public partial class Player : CharacterBody2D
 		}
 	}
 
-	private void _on_chatting_area_body_entered(Node body)
+	
+
+	private void _on_chatting_area_body_entered(StaticBody2D body)
 	{
-		if (body.GetType() == typeof(DeathStatue))
+		if (body.GetType() == typeof(DeathStatueBody))
 		{
 			ReadyForStatueTalking = true;
 			GD.Print("good");
 		}
 	}
 
-	private void _on_chatting_area_body_exited(Node body)
+	private void _on_chatting_area_body_exited(StaticBody2D body)
 	{
-		if (body.GetType() == typeof(DeathStatue))
+		if (body.GetType() == typeof(DeathStatueBody))
 		{
 			ReadyForStatueTalking = false;
 		}
@@ -149,7 +151,27 @@ public partial class Player : CharacterBody2D
 		GetNode<CollisionShape2D>("CollisionShape2D").Disabled = false;
 	}
 	
-	
+	private void current_cam()
+	{
+		var cam = GetNode<world>("/root/World");
+		var cam1 = GetNode<Camera2D>("Camera2D");
+		var cam2 = GetNode<Camera2D>("world2");
+		if (cam.current_world == 0)
+		{
+			cam1.Enabled = true;
+			cam2.Enabled = false;
+		}
+		else if (cam.current_world == 1)
+		{
+			cam1.Enabled = false;
+			cam2.Enabled = true;
+		}
+	}
+
+
+
+
+
 	public override void _Ready()
 	{
 	ScreenSize = GetViewportRect().Size;
@@ -164,10 +186,15 @@ public partial class Player : CharacterBody2D
 	public override void _PhysicsProcess(double delta)
 	{
 		GetInput();
-		MoveAndCollide(Velocity * (float)delta);
+		var indialogue = GetNode<global_dialogue>("/root/GlobalDialogue");
+		if (indialogue.in_dialogue == false)
+		{
+			MoveAndCollide(Velocity * (float)delta);
+		}
 		enemy_attack();
 		attack();
 		update_health();
+		current_cam();
 
 		if (hit_orb == true)
 		{
@@ -179,7 +206,8 @@ public partial class Player : CharacterBody2D
 
 		if (ReadyForStatueTalking == true)
 		{
-			if (Input.IsActionJustPressed("enter"))
+			
+			if (Input.IsActionJustPressed("enter") && indialogue.in_dialogue == false)
 			{
 				var dialogue = GD.Load<Resource>("res://DialogueStatue.dialogue");
 				DialogueManager.ShowExampleDialogueBalloon(dialogue, "start");
@@ -195,7 +223,7 @@ public partial class Player : CharacterBody2D
 		}
 		var animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		var Item = GetNode<AnimatedSprite2D>("Item In Hand");
-		if (Velocity.X != 0)
+		if (Velocity.X != 0 && indialogue.in_dialogue == false)
 		{
 			animatedSprite2D.Animation = "walk";
 			animatedSprite2D.FlipV = false;
@@ -212,12 +240,12 @@ public partial class Player : CharacterBody2D
 				Item.FlipH = false;
 			}
 		}
-		else if (Velocity.Y < 0)
+		else if (Velocity.Y < 0 && indialogue.in_dialogue == false)
 		{
 			animatedSprite2D.Animation = "up";
 			animatedSprite2D.FlipH = false;
 		}
-		else if (Velocity.Y > 0)
+		else if (Velocity.Y > 0 && indialogue.in_dialogue == false)
 		{
 			animatedSprite2D.Animation = "down";
 			animatedSprite2D.FlipH = false;

@@ -1,10 +1,12 @@
 ~ start
-
+set GlobalDialogue.in_dialogue = true
 if GlobalDialogue.death_activated_light == true
 	if GlobalDialogue.given_orb == false
 		Statue Of Death: [[Greetings|Salutations|Good day]], how are you?
 		- I'm fine
 			Statue Of Death: That's... nice?
+			set GlobalDialogue.in_dialogue = false
+			=> END
 		- I found something strange
 			Statue Of Death: Oh, I love unknown objects! You never know whether they will kill you or help you...
 			- I don't quite know what it is...
@@ -15,7 +17,9 @@ if GlobalDialogue.death_activated_light == true
 					Statue Of Death: But then someone stole it and buried it! I soon got rid of them, but they had hidden the orb...
 					Statue Of Death: Anyway, thanks! I will soon reward you for your good deed...
 					set GlobalDialogue.given_orb = true
+					set GlobalDialogue.in_dialogue = false
 					=> END
+					
 				Statue Of Death: That just looks like travel supplies to me!
 			- Actually nevermind...
 				Statue Of Death: Suit yourself! I'm always here... :(
@@ -23,7 +27,9 @@ if GlobalDialogue.death_activated_light == true
 		- Who are you?!
 			Statue Of Death: I am Death. Literally.
 			Statue Of Death: I quite often pop in to check how my statues are going, however, they are falling into disrepair!
-		- Bye. => END
+		- Bye.
+			set GlobalDialogue.in_dialogue = false
+			=> END
 	else:
 		Statue Of Death: [[Greetings|Salutations|Good day]], thanks again for finding that orb!
 		Statue Of Death: Because of what you did, you gain an extra +20 max health!
@@ -35,6 +41,8 @@ else:
 			Statue Of Death: [[Greetings|Salutations|Good day]], how are you?
 			- I'm fine
 				Statue Of Death: That's... nice?
+				set GlobalDialogue.in_dialogue = false
+				=> END
 			- I found something strange
 				Statue Of Death: Oh, I love unknown objects! You never know whether they will kill you or help you...
 				- I don't quite know what it is...
@@ -45,7 +53,9 @@ else:
 						Statue Of Death: But then someone stole it and buried it! I soon got rid of them, but they had hidden the orb...
 						Statue Of Death: Anyway, thanks! I will soon reward you for your good deed...
 						set GlobalDialogue.given_orb = true
+						set GlobalDialogue.in_dialogue = false
 						=> END
+						
 					Statue Of Death: That just looks like travel supplies to me!
 				- Actually nevermind...
 					Statue Of Death: Suit yourself! I'm always here... :(
@@ -53,7 +63,9 @@ else:
 			- Who are you?!
 				Statue Of Death: I am Death. Literally.
 				Statue Of Death: I quite often pop in to check how my statues are going, however, they are falling into disrepair!
-			- Bye. => END
+			- Bye.
+				set GlobalDialogue.in_dialogue = false
+				=> END
 		else:
 			Statue Of Death: [[Greetings|Salutations|Good day]], thanks again for finding that orb!
 			Statue Of Death: Because of what you did, you gain an extra +20 max health!
@@ -62,6 +74,6 @@ else:
 	
 	
 
-
+set GlobalDialogue.in_dialogue = false
 
 => END
