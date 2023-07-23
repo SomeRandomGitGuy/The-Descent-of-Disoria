@@ -1,6 +1,6 @@
-# Tria-Magicis
+# The Descent of Disoria
 
-Tria Magicis is a quest-filled rpg with 3 magics involved:
+The Descent of Disoria is a quest-filled rpg with 3 magics involved:
 - Alchemy
 - Necromancy
 - Chronomancy
