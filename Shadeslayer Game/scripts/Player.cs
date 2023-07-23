@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using DialogueManagerRuntime;
 
 public partial class Player : CharacterBody2D
 {
@@ -13,6 +14,9 @@ public partial class Player : CharacterBody2D
 	int player_health = 100;
 	bool player_alive = true;
 	bool attack_ip = false;
+	bool hit_orb = false;
+
+	bool ReadyForStatueTalking = false;
 
 	Vector2 inputDirection = new Vector2(0,0);
 	
@@ -33,6 +37,32 @@ public partial class Player : CharacterBody2D
 			hazard_in_range = false;
 		}
 	}
+
+	private void _on_chatting_area_body_entered(Node body)
+	{
+		if (body.GetType() == typeof(DeathStatue))
+		{
+			ReadyForStatueTalking = true;
+			GD.Print("good");
+		}
+	}
+
+	private void _on_chatting_area_body_exited(Node body)
+	{
+		if (body.GetType() == typeof(DeathStatue))
+		{
+			ReadyForStatueTalking = false;
+		}
+	}
+
+	private void _orb_entered(Node body)
+	{
+		if (body.GetType() == typeof(Player))
+		{
+			hit_orb = true;
+		}
+	}
+	
 	
 	private void _on_damagecooldown_timeout()
 	{
@@ -138,6 +168,24 @@ public partial class Player : CharacterBody2D
 		enemy_attack();
 		attack();
 		update_health();
+
+		if (hit_orb == true)
+		{
+			if (Input.IsActionJustPressed("enter"))
+			{
+				GetNode<global_dialogue>("/root/GlobalDialogue").found_orb = true;
+			}
+		}
+
+		if (ReadyForStatueTalking == true)
+		{
+			if (Input.IsActionJustPressed("enter"))
+			{
+				var dialogue = GD.Load<Resource>("res://DialogueStatue.dialogue");
+				DialogueManager.ShowExampleDialogueBalloon(dialogue, "start");
+			}
+		}
+
 		if (player_health <= 0)
 		{
 			player_alive = false;

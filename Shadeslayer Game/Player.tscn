@@ -1,7 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://o5paglimaq1a"]
+[gd_scene load_steps=28 format=3 uid="uid://dkimqrdeb8gk1"]
 
 [ext_resource type="Texture2D" uid="uid://dlkdtyhfntgre" path="res://Character1.png" id="1_0oj2l"]
-[ext_resource type="Script" path="res://Player.cs" id="1_7hd0l"]
+[ext_resource type="Script" path="res://scripts/Player.cs" id="1_1ilbr"]
 [ext_resource type="Texture2D" uid="uid://daurxq7p6voj3" path="res://Down1.png" id="2_hal73"]
 [ext_resource type="Texture2D" uid="uid://cs3l3sihluhh" path="res://Down2.png" id="3_xqaik"]
 [ext_resource type="Texture2D" uid="uid://b85kcjdqigsbm" path="res://Down3.png" id="4_pfb37"]
@@ -163,10 +163,13 @@ public partial class ItemHandScript : AnimatedSprite2D
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mvaan"]
 size = Vector2(41, 68)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qc4i0"]
+radius = 64.0312
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(464, 250)
 collision_layer = 3
-script = ExtResource("1_7hd0l")
+script = ExtResource("1_1ilbr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_as_relative = false
@@ -213,8 +216,16 @@ show_percentage = false
 wait_time = 3.0
 autostart = true
 
+[node name="ChattingArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChattingArea"]
+position = Vector2(2, -40)
+shape = SubResource("CircleShape2D_qc4i0")
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_hazard_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_hazard_exited"]
 [connection signal="timeout" from="damagecooldown" to="." method="_on_damagecooldown_timeout"]
 [connection signal="timeout" from="attackcooldown" to="." method="_on_attackcooldown_timeout"]
 [connection signal="timeout" from="regen" to="." method="_on_regen_timeout"]
+[connection signal="body_entered" from="ChattingArea" to="." method="_on_chatting_area_body_entered"]
+[connection signal="body_exited" from="ChattingArea" to="." method="_on_chatting_area_body_exited"]

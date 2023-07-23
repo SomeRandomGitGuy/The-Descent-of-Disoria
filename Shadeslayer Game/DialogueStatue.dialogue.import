@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://niwo58vx30n7"
+path="res://.godot/imported/DialogueStatue.dialogue-eb19e0136cc34bf25da62c93b901fca7.tres"
+
+[deps]
+
+source_file="res://DialogueStatue.dialogue"
+dest_files=["res://.godot/imported/DialogueStatue.dialogue-eb19e0136cc34bf25da62c93b901fca7.tres"]
+
+[params]
+
+defaults=true

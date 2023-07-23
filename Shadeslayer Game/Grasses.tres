@@ -1,15 +1,15 @@
-[gd_resource type="TileSet" load_steps=16 format=3 uid="uid://jrxdphxc3nwh"]
+[gd_resource type="TileSet" load_steps=17 format=3 uid="uid://jrxdphxc3nwh"]
 
-[ext_resource type="Texture2D" uid="uid://c27c7eff7cfo7" path="res://Grass Tile.png" id="1_7rteg"]
-[ext_resource type="Texture2D" uid="uid://dtvjybnrnhkix" path="res://Grass Tile2.png" id="2_fcnqx"]
-[ext_resource type="Texture2D" uid="uid://bvb7ux2hbqo5g" path="res://BIGTree.png" id="3_dmcwx"]
+[ext_resource type="Texture2D" uid="uid://bu3ngiawbljd2" path="res://grass2.png" id="1_o2cdw"]
+[ext_resource type="Texture2D" uid="uid://cg1hyu44h0jks" path="res://grass.png" id="1_xt172"]
 [ext_resource type="Texture2D" uid="uid://c5kah5jrxca03" path="res://Bush.png" id="4_at7u8"]
 [ext_resource type="PackedScene" uid="uid://ddcjckrrbj8ok" path="res://big_tree.tscn" id="5_2vhvd"]
-[ext_resource type="PackedScene" uid="uid://bdcmhyqtt3w6c" path="res://Mush.tscn" id="5_b0luo"]
+[ext_resource type="PackedScene" uid="uid://chksf34lpctw8" path="res://Mush.tscn" id="5_b0luo"]
+[ext_resource type="PackedScene" uid="uid://djptjopn3sgxy" path="res://DeathStatue.tscn" id="7_0ofov"]
 [ext_resource type="Texture2D" uid="uid://dxq1ovqk58pic" path="res://MushSheetyayayayaya.png" id="7_71usp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mkvyj"]
-texture = ExtResource("1_7rteg")
+texture = ExtResource("1_o2cdw")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -17,7 +17,7 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6grp5"]
 resource_name = "Grass2"
-texture = ExtResource("2_fcnqx")
+texture = ExtResource("1_o2cdw")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -25,54 +25,11 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_elq5i"]
 resource_name = "Tree"
-texture = ExtResource("3_dmcwx")
+texture = ExtResource("1_xt172")
 texture_region_size = Vector2i(64, 64)
-1:0/0 = 0
-1:0/0/z_index = 2
-1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:0/0/physics_layer_0/angular_velocity = 0.0
-2:0/0 = 0
-2:0/0/z_index = 2
-2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:0/0/physics_layer_0/angular_velocity = 0.0
-1:1/0 = 0
-1:1/0/z_index = 2
-1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:1/0/physics_layer_0/angular_velocity = 0.0
-2:1/0 = 0
-2:1/0/z_index = 2
-2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:1/0/physics_layer_0/angular_velocity = 0.0
-0:2/0 = 0
-0:2/0/z_index = 2
-0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:2/0/physics_layer_0/angular_velocity = 0.0
-1:2/0 = 0
-1:2/0/z_index = 2
-1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:2/0/physics_layer_0/angular_velocity = 0.0
-2:2/0 = 0
-2:2/0/z_index = 2
-2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:2/0/physics_layer_0/angular_velocity = 0.0
-3:2/0 = 0
-3:2/0/z_index = 2
-3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:2/0/physics_layer_0/angular_velocity = 0.0
-1:3/0 = 0
-1:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:3/0/physics_layer_0/angular_velocity = 0.0
-2:3/0 = 0
-2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:3/0/physics_layer_0/angular_velocity = 0.0
-1:4/0 = 0
-1:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:4/0/physics_layer_0/angular_velocity = 0.0
-1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(32, -32, 19.5, -32, 19, -3, 32, -2.5)
-2:4/0 = 0
-2:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:4/0/physics_layer_0/angular_velocity = 0.0
-2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, -16, -32, -16, -1.5, -32, -2.5)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i3vcl"]
 resource_name = "bush1"
@@ -89,6 +46,10 @@ scenes/2/scene = ExtResource("5_b0luo")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_3tli1"]
 scenes/1/scene = ExtResource("5_2vhvd")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_3pb8p"]
+resource_name = "Death"
+scenes/2/scene = ExtResource("7_0ofov")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vnw5i"]
 resource_name = "barrier"
@@ -226,3 +187,4 @@ sources/5 = SubResource("TileSetScenesCollectionSource_3tli1")
 sources/7 = SubResource("TileSetAtlasSource_vnw5i")
 sources/4 = SubResource("TileSetScenesCollectionSource_awxo8")
 sources/8 = SubResource("TileSetAtlasSource_b5ohn")
+sources/6 = SubResource("TileSetScenesCollectionSource_3pb8p")

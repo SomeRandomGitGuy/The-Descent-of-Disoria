@@ -17,11 +17,17 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-MainVariables="*res://MainVariables.cs"
+MainVariables="*res://scripts/MainVariables.cs"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+GlobalDialogue="*res://scripts/global_dialogue.cs"
 
 [dotnet]
 
 project/assembly_name="Shadeslayer"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 [input]
 
@@ -54,3 +60,12 @@ attack={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"pressed":false,"double_click":false,"script":null)
 ]
 }
+enter={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194309,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
+
+[internationalization]
+
+locale/translations_pot_files=PackedStringArray("res://DialogueStatue.dialogue", "res://scripts/DialogueStatue.dialogue")
